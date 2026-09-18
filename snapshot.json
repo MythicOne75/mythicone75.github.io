@@ -1,0 +1,688 @@
+{
+  "schema": 2,
+  "generatedAt": "2026-09-17T03:29:15.461668Z",
+  "source": {
+    "kind": "SIMULATED",
+    "origin": "services/genghis_service/defense_lab.py",
+    "connected": false,
+    "note": "The estate is simulated. The defence is the real kernel: the real inventory, threat graph, determination engine and containment registry."
+  },
+  "system": {
+    "tenant": "t_acme",
+    "defenseStatus": "CONTAINMENT_AVAILABLE",
+    "connected": false,
+    "observedAt": "2026-09-16T13:00:00+00:00"
+  },
+  "metrics": [
+    {
+      "id": "agents",
+      "label": "AI AGENTS",
+      "value": 4,
+      "reality": "SIMULATED"
+    },
+    {
+      "id": "events",
+      "label": "EVENTS",
+      "value": 20,
+      "reality": "SIMULATED"
+    },
+    {
+      "id": "threats",
+      "label": "ACTIVE THREATS",
+      "value": 2,
+      "reality": "SIMULATED"
+    },
+    {
+      "id": "containmentFailures",
+      "label": "CONTAINMENT FAILURES",
+      "value": 0,
+      "reality": "SIMULATED",
+      "note": "No containment has been applied, so none has failed."
+    }
+  ],
+  "agents": [
+    {
+      "id": "finance-assist-1",
+      "trust": "UNAUTHORIZED",
+      "declared": true,
+      "recommended": "QUARANTINE",
+      "actionable": true,
+      "requiresHuman": true,
+      "blastRadius": 4,
+      "affectedAssets": [
+        "CREDENTIAL:vault-cred",
+        "DATABASE:hr-records",
+        "DATABASE:invoices",
+        "SERVICE:payments-api"
+      ],
+      "reasons": [
+        "REGISTERED",
+        "TOOL_OUTSIDE_GRANT",
+        "OPERATION_OUTSIDE_BASELINE",
+        "RESOURCE_OUTSIDE_BASELINE"
+      ],
+      "observationCount": 3,
+      "observedTools": [
+        "read_invoice",
+        "read_secret_vault",
+        "summarize"
+      ],
+      "grantedCapabilities": [
+        "read_invoice",
+        "summarize"
+      ],
+      "overreached": true,
+      "explanation": "finance-assist-1 is UNAUTHORIZED because TOOL_OUTSIDE_GRANT. 4 asset(s) reachable from finance-assist-1; 3 of them CRITICAL (CREDENTIAL:vault-cred, DATABASE:hr-records, SERVICE:payments-api). Recommended response is QUARANTINE, bounded by the QUARANTINE ceiling this evidence permits."
+    },
+    {
+      "id": "mail-triage-1",
+      "trust": "KNOWN_TRUSTED",
+      "declared": true,
+      "recommended": "OBSERVE",
+      "actionable": false,
+      "requiresHuman": false,
+      "blastRadius": 1,
+      "affectedAssets": [
+        "DATABASE:mailbox"
+      ],
+      "reasons": [
+        "REGISTERED",
+        "BEHAVIOUR_WITHIN_BASELINE"
+      ],
+      "observationCount": 1,
+      "observedTools": [
+        "analyze_artifact",
+        "read_email"
+      ],
+      "grantedCapabilities": [
+        "analyze_artifact",
+        "read_email"
+      ],
+      "overreached": false,
+      "explanation": "mail-triage-1 is KNOWN_TRUSTED \u2014 no adverse finding. 1 asset(s) reachable from mail-triage-1. Recommended response is OBSERVE, bounded by the OBSERVE ceiling this evidence permits."
+    },
+    {
+      "id": "sms-triage-1",
+      "trust": "KNOWN_TRUSTED",
+      "declared": true,
+      "recommended": "OBSERVE",
+      "actionable": false,
+      "requiresHuman": false,
+      "blastRadius": 1,
+      "affectedAssets": [
+        "DATABASE:sms-stream"
+      ],
+      "reasons": [
+        "REGISTERED",
+        "BEHAVIOUR_WITHIN_BASELINE"
+      ],
+      "observationCount": 1,
+      "observedTools": [
+        "read_sms"
+      ],
+      "grantedCapabilities": [
+        "analyze_artifact",
+        "read_sms"
+      ],
+      "overreached": false,
+      "explanation": "sms-triage-1 is KNOWN_TRUSTED \u2014 no adverse finding. 1 asset(s) reachable from sms-triage-1. Recommended response is OBSERVE, bounded by the OBSERVE ceiling this evidence permits."
+    },
+    {
+      "id": "unknown-worker-9",
+      "trust": "UNKNOWN",
+      "declared": false,
+      "recommended": "RESTRICT",
+      "actionable": true,
+      "requiresHuman": true,
+      "blastRadius": 2,
+      "affectedAssets": [
+        "DATABASE:hr-records",
+        "SERVICE:payments-api"
+      ],
+      "reasons": [
+        "NO_REGISTRATION",
+        "OPERATION_OUTSIDE_BASELINE",
+        "RESOURCE_OUTSIDE_BASELINE"
+      ],
+      "observationCount": 1,
+      "observedTools": [
+        "gmail_api_raw",
+        "wire_transfer"
+      ],
+      "grantedCapabilities": [],
+      "overreached": false,
+      "explanation": "unknown-worker-9 is UNKNOWN because NO_REGISTRATION. 2 asset(s) reachable from unknown-worker-9; 2 of them CRITICAL (DATABASE:hr-records, SERVICE:payments-api). Recommended response is RESTRICT, bounded by the RESTRICT ceiling this evidence permits."
+    }
+  ],
+  "threats": [
+    {
+      "id": "finance-assist-1",
+      "severity": "HIGH",
+      "trust": "UNAUTHORIZED",
+      "subject": "finance-assist-1",
+      "recommended": "QUARANTINE",
+      "blastRadius": 4,
+      "affectedAssets": [
+        "CREDENTIAL:vault-cred",
+        "DATABASE:hr-records",
+        "DATABASE:invoices",
+        "SERVICE:payments-api"
+      ],
+      "explanation": "finance-assist-1 is UNAUTHORIZED because TOOL_OUTSIDE_GRANT. 4 asset(s) reachable from finance-assist-1; 3 of them CRITICAL (CREDENTIAL:vault-cred, DATABASE:hr-records, SERVICE:payments-api). Recommended response is QUARANTINE, bounded by the QUARANTINE ceiling this evidence permits.",
+      "containmentProposed": true,
+      "containmentApplied": false
+    },
+    {
+      "id": "unknown-worker-9",
+      "severity": "HIGH",
+      "trust": "UNKNOWN",
+      "subject": "unknown-worker-9",
+      "recommended": "RESTRICT",
+      "blastRadius": 2,
+      "affectedAssets": [
+        "DATABASE:hr-records",
+        "SERVICE:payments-api"
+      ],
+      "explanation": "unknown-worker-9 is UNKNOWN because NO_REGISTRATION. 2 asset(s) reachable from unknown-worker-9; 2 of them CRITICAL (DATABASE:hr-records, SERVICE:payments-api). Recommended response is RESTRICT, bounded by the RESTRICT ceiling this evidence permits.",
+      "containmentProposed": false,
+      "containmentApplied": false
+    }
+  ],
+  "events": [
+    {
+      "at": "2026-09-16T09:00:00+00:00",
+      "time": "09:00:00",
+      "phase": "ESTATE",
+      "actor": "operator",
+      "detail": "3 agent(s) declared, 6 asset(s) inventoried",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T09:05:00+00:00",
+      "time": "09:05:00",
+      "phase": "OBSERVE",
+      "actor": "sentinel",
+      "detail": "mail-triage-1: triaging the morning mail",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T09:06:00+00:00",
+      "time": "09:06:00",
+      "phase": "OBSERVE",
+      "actor": "sentinel",
+      "detail": "sms-triage-1: triaging inbound SMS",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T09:07:00+00:00",
+      "time": "09:07:00",
+      "phase": "OBSERVE",
+      "actor": "sentinel",
+      "detail": "finance-assist-1: summarising yesterday's invoices",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T10:00:00+00:00",
+      "time": "10:00:00",
+      "phase": "OBSERVE",
+      "actor": "sentinel",
+      "detail": "finance-assist-1: still doing its job",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T11:00:00+00:00",
+      "time": "11:00:00",
+      "phase": "OBSERVE",
+      "actor": "sentinel",
+      "detail": "finance-assist-1: reaches for the secrets vault \u2014 a tool nobody granted it",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T12:00:00+00:00",
+      "time": "12:00:00",
+      "phase": "OBSERVE",
+      "actor": "sentinel",
+      "detail": "unknown-worker-9: an agent the deployment has never heard of, moving money  [FIRST SIGHTING \u2014 not in the inventory]",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "DISCOVER",
+      "actor": "scout",
+      "detail": "1 agent(s) acting that nobody declared: unknown-worker-9",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "DISCOVER",
+      "actor": "scout",
+      "detail": "finance-assist-1 reached for read_secret_vault \u2014 granted none of them",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "DETERMINE",
+      "actor": "analyst",
+      "detail": "finance-assist-1: UNAUTHORIZED -> recommend QUARANTINE (4 asset(s) reachable)",
+      "severity": "HIGH"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "DETERMINE",
+      "actor": "analyst",
+      "detail": "unknown-worker-9: UNKNOWN -> recommend RESTRICT (2 asset(s) reachable)",
+      "severity": "MEDIUM"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "CONTAIN",
+      "actor": "containment",
+      "detail": "PROPOSED isolate finance-assist-1 \u2014 NOT applied; a human decides",
+      "severity": "HIGH"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "CONTAIN",
+      "actor": "containment",
+      "detail": "unknown-worker-9: RESTRICT recommended, below the containment threshold \u2014 reported to an operator, nothing applied",
+      "severity": "HIGH"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "RECOVER",
+      "actor": "recovery",
+      "detail": "PLANNED revoke the declaration on finance-assist-1 \u2014 NOT applied (a named human principal (GSC-124))",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "RECOVER",
+      "actor": "recovery",
+      "detail": "PLANNED revoke the observed reach on CREDENTIAL:vault-cred \u2014 NOT applied (a named human principal)",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "RECOVER",
+      "actor": "recovery",
+      "detail": "PLANNED revoke the observed reach on DATABASE:hr-records \u2014 NOT applied (a named human principal)",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "RECOVER",
+      "actor": "recovery",
+      "detail": "PLANNED revoke the observed reach on DATABASE:invoices \u2014 NOT applied (a named human principal)",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "RECOVER",
+      "actor": "recovery",
+      "detail": "PLANNED revoke the observed reach on SERVICE:payments-api \u2014 NOT applied (a named human principal)",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "RECOVER",
+      "actor": "recovery",
+      "detail": "PLANNED register or remove on unknown-worker-9 \u2014 NOT applied (an operator decides whether this agent belongs here at all)",
+      "severity": "INFO"
+    },
+    {
+      "at": "2026-09-16T13:00:00+00:00",
+      "time": "13:00:00",
+      "phase": "FORENSICS",
+      "actor": "forensics",
+      "detail": "20 step(s) preserved in order",
+      "severity": "INFO"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "AI_AGENT:finance-assist-1",
+        "kind": "AI_AGENT",
+        "key": "finance-assist-1",
+        "label": "summarises invoices",
+        "geo": {
+          "region": "us-east",
+          "lat": 38.95,
+          "lon": -77.45
+        }
+      },
+      {
+        "id": "AI_AGENT:mail-triage-1",
+        "kind": "AI_AGENT",
+        "key": "mail-triage-1",
+        "label": "triages inbound email",
+        "geo": {
+          "region": "us-east",
+          "lat": 38.95,
+          "lon": -77.45
+        }
+      },
+      {
+        "id": "AI_AGENT:sms-triage-1",
+        "kind": "AI_AGENT",
+        "key": "sms-triage-1",
+        "label": "triages inbound SMS",
+        "geo": {
+          "region": "eu-west",
+          "lat": 53.35,
+          "lon": -6.26
+        }
+      },
+      {
+        "id": "AI_AGENT:unknown-worker-9",
+        "kind": "AI_AGENT",
+        "key": "unknown-worker-9",
+        "label": "undeclared",
+        "geo": {
+          "region": "unattributed",
+          "lat": 25.2,
+          "lon": 55.27
+        }
+      },
+      {
+        "id": "CREDENTIAL:vault-cred",
+        "kind": "CREDENTIAL",
+        "key": "vault-cred",
+        "label": "the secrets vault credential",
+        "geo": {
+          "region": "us-west",
+          "lat": 45.52,
+          "lon": -122.68
+        }
+      },
+      {
+        "id": "DATABASE:hr-records",
+        "kind": "DATABASE",
+        "key": "hr-records",
+        "label": "employee records",
+        "geo": {
+          "region": "eu-central",
+          "lat": 50.11,
+          "lon": 8.68
+        }
+      },
+      {
+        "id": "DATABASE:invoices",
+        "kind": "DATABASE",
+        "key": "invoices",
+        "label": "invoice records",
+        "geo": {
+          "region": "us-east",
+          "lat": 38.95,
+          "lon": -77.45
+        }
+      },
+      {
+        "id": "DATABASE:mailbox",
+        "kind": "DATABASE",
+        "key": "mailbox",
+        "label": "the customer mailbox",
+        "geo": {
+          "region": "us-east",
+          "lat": 38.95,
+          "lon": -77.45
+        }
+      },
+      {
+        "id": "DATABASE:sms-stream",
+        "kind": "DATABASE",
+        "key": "sms-stream",
+        "label": "inbound SMS",
+        "geo": {
+          "region": "eu-west",
+          "lat": 53.35,
+          "lon": -6.26
+        }
+      },
+      {
+        "id": "SERVICE:payments-api",
+        "kind": "SERVICE",
+        "key": "payments-api",
+        "label": "the payments service",
+        "geo": {
+          "region": "us-west",
+          "lat": 45.52,
+          "lon": -122.68
+        }
+      }
+    ],
+    "edges": [
+      {
+        "source": "AI_AGENT:finance-assist-1",
+        "target": "CREDENTIAL:vault-cred",
+        "kind": "ACCESSES",
+        "basis": "OBSERVED",
+        "observationCount": 1
+      },
+      {
+        "source": "AI_AGENT:finance-assist-1",
+        "target": "DATABASE:invoices",
+        "kind": "ACCESSES",
+        "basis": "OBSERVED",
+        "observationCount": 2
+      },
+      {
+        "source": "AI_AGENT:finance-assist-1",
+        "target": "DATABASE:invoices",
+        "kind": "AUTHORIZED_FOR",
+        "basis": "DECLARED",
+        "observationCount": 1
+      },
+      {
+        "source": "AI_AGENT:mail-triage-1",
+        "target": "DATABASE:mailbox",
+        "kind": "ACCESSES",
+        "basis": "OBSERVED",
+        "observationCount": 1
+      },
+      {
+        "source": "AI_AGENT:mail-triage-1",
+        "target": "DATABASE:mailbox",
+        "kind": "AUTHORIZED_FOR",
+        "basis": "DECLARED",
+        "observationCount": 1
+      },
+      {
+        "source": "AI_AGENT:sms-triage-1",
+        "target": "DATABASE:sms-stream",
+        "kind": "ACCESSES",
+        "basis": "OBSERVED",
+        "observationCount": 1
+      },
+      {
+        "source": "AI_AGENT:sms-triage-1",
+        "target": "DATABASE:sms-stream",
+        "kind": "AUTHORIZED_FOR",
+        "basis": "DECLARED",
+        "observationCount": 1
+      },
+      {
+        "source": "AI_AGENT:unknown-worker-9",
+        "target": "SERVICE:payments-api",
+        "kind": "ACCESSES",
+        "basis": "OBSERVED",
+        "observationCount": 1
+      },
+      {
+        "source": "CREDENTIAL:vault-cred",
+        "target": "SERVICE:payments-api",
+        "kind": "AUTHENTICATES_TO",
+        "basis": "OBSERVED",
+        "observationCount": 1
+      },
+      {
+        "source": "SERVICE:payments-api",
+        "target": "DATABASE:hr-records",
+        "kind": "ACCESSES",
+        "basis": "OBSERVED",
+        "observationCount": 1
+      }
+    ]
+  },
+  "origins": [
+    {
+      "subject": "finance-assist-1",
+      "geo": {
+        "region": "us-east",
+        "lat": 38.95,
+        "lon": -77.45
+      },
+      "trust": "UNAUTHORIZED",
+      "severity": "HIGH",
+      "declared": true,
+      "targets": [
+        {
+          "id": "CREDENTIAL:vault-cred",
+          "key": "vault-cred",
+          "geo": {
+            "region": "us-west",
+            "lat": 45.52,
+            "lon": -122.68
+          }
+        },
+        {
+          "id": "DATABASE:hr-records",
+          "key": "hr-records",
+          "geo": {
+            "region": "eu-central",
+            "lat": 50.11,
+            "lon": 8.68
+          }
+        },
+        {
+          "id": "DATABASE:invoices",
+          "key": "invoices",
+          "geo": {
+            "region": "us-east",
+            "lat": 38.95,
+            "lon": -77.45
+          }
+        },
+        {
+          "id": "SERVICE:payments-api",
+          "key": "payments-api",
+          "geo": {
+            "region": "us-west",
+            "lat": 45.52,
+            "lon": -122.68
+          }
+        }
+      ]
+    },
+    {
+      "subject": "unknown-worker-9",
+      "geo": {
+        "region": "unattributed",
+        "lat": 25.2,
+        "lon": 55.27
+      },
+      "trust": "UNKNOWN",
+      "severity": "HIGH",
+      "declared": false,
+      "targets": [
+        {
+          "id": "DATABASE:hr-records",
+          "key": "hr-records",
+          "geo": {
+            "region": "eu-central",
+            "lat": 50.11,
+            "lon": 8.68
+          }
+        },
+        {
+          "id": "SERVICE:payments-api",
+          "key": "payments-api",
+          "geo": {
+            "region": "us-west",
+            "lat": 45.52,
+            "lon": -122.68
+          }
+        }
+      ]
+    }
+  ],
+  "containments": [
+    {
+      "subject": "finance-assist-1",
+      "level": "ISOLATE",
+      "reason": "finance-assist-1 is UNAUTHORIZED because TOOL_OUTSIDE_GRANT. 4 asset(s) reachable from finance-assist-1; 3 of them CRITICAL (CREDENTIAL:vault-cred, DATABASE:hr-records, SERVICE:payments-api). Recommended response is QUARANTINE, bounded by the QUARANTINE ceiling this evidence permits.",
+      "authorizationRequired": "a named human principal must authorize this (GSC-124 makes release a human decision, and rule 128 says no assessment can supply consent)",
+      "applied": false
+    }
+  ],
+  "recovery": [
+    {
+      "target": "finance-assist-1",
+      "action": "revoke the declaration",
+      "restores": "the agent can no longer present a grant it abused",
+      "requires": "a named human principal (GSC-124)",
+      "applied": false
+    },
+    {
+      "target": "CREDENTIAL:vault-cred",
+      "action": "revoke the observed reach",
+      "restores": "the estate graph reflects an authorized topology again",
+      "requires": "a named human principal",
+      "applied": false
+    },
+    {
+      "target": "DATABASE:hr-records",
+      "action": "revoke the observed reach",
+      "restores": "the estate graph reflects an authorized topology again",
+      "requires": "a named human principal",
+      "applied": false
+    },
+    {
+      "target": "DATABASE:invoices",
+      "action": "revoke the observed reach",
+      "restores": "the estate graph reflects an authorized topology again",
+      "requires": "a named human principal",
+      "applied": false
+    },
+    {
+      "target": "SERVICE:payments-api",
+      "action": "revoke the observed reach",
+      "restores": "the estate graph reflects an authorized topology again",
+      "requires": "a named human principal",
+      "applied": false
+    },
+    {
+      "target": "unknown-worker-9",
+      "action": "register or remove",
+      "restores": "an inventory that matches the estate",
+      "requires": "an operator decides whether this agent belongs here at all",
+      "applied": false
+    }
+  ],
+  "realityLedger": {
+    "total": 74,
+    "counts": {
+      "DESIGNED": 5,
+      "IMPLEMENTED": 0,
+      "TESTED": 56,
+      "SIMULATED": 13,
+      "CONNECTED": 0,
+      "ENFORCED": 0,
+      "VERIFIED": 0
+    },
+    "connected": false,
+    "highest": "SIMULATED"
+  }
+}

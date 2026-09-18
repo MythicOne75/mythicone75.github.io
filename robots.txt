@@ -1,0 +1,5 @@
+# Unlisted, not secret. Anyone with the link can open this; it simply should not turn up in a
+# search for the product before there is a product to find. A public repository is clonable
+# whatever this file says.
+User-agent: *
+Disallow: /
