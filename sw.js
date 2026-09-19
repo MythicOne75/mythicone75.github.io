@@ -16,7 +16,7 @@
  * an offline launch shows the last run rather than an error. It is an EXPORT either way, and
  * the interface already labels it as one.
  */
-const VERSION = 'genghis-f89b9a21ac27';
+const VERSION = 'genghis-0686a48b14fd';
 const SHELL = `${VERSION}-shell`;
 const DATA = `${VERSION}-data`;
 
