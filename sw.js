@@ -16,7 +16,7 @@
  * an offline launch shows the last run rather than an error. It is an EXPORT either way, and
  * the interface already labels it as one.
  */
-const VERSION = 'genghis-db16eb5319ae';
+const VERSION = 'genghis-9415f91b737a';
 const SHELL = `${VERSION}-shell`;
 const DATA = `${VERSION}-data`;
 
@@ -37,7 +37,16 @@ self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(SHELL)
       // One failure must not fail the whole install, or a single 404 leaves the app uninstalled.
-      .then((c) => Promise.allSettled(PRECACHE.map((u) => c.add(u))))
+      // `cache.add(url)` fetches through the HTTP CACHE, so a new worker version can precache
+      // a STALE asset — which is exactly what happened: the onboarding artwork was recropped to
+      // remove the painted Sign In button, the server had the new file, and returning visitors
+      // went on being served the old one because brand assets keep a FIXED FILENAME every build.
+      // The bundle cannot have this problem (`index-<hash>.js` is a new URL when it changes);
+      // `brand/onboarding.webp` is the same URL forever. `cache: 'reload'` bypasses the HTTP
+      // cache on install, so a stamped worker always precaches what the server currently holds.
+      .then((c) => Promise.allSettled(
+        PRECACHE.map((u) => fetch(new Request(u, { cache: 'reload' })).then((r) => c.put(u, r))),
+      ))
       .then(() => self.skipWaiting()),
   );
 });
