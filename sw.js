@@ -16,7 +16,7 @@
  * an offline launch shows the last run rather than an error. It is an EXPORT either way, and
  * the interface already labels it as one.
  */
-const VERSION = 'genghis-0686a48b14fd';
+const VERSION = 'genghis-a9c788bc1a96';
 const SHELL = `${VERSION}-shell`;
 const DATA = `${VERSION}-data`;
 
@@ -42,7 +42,7 @@ self.addEventListener('install', (e) => {
       // remove the painted Sign In button, the server had the new file, and returning visitors
       // went on being served the old one because brand assets keep a FIXED FILENAME every build.
       // The bundle cannot have this problem (`index-<hash>.js` is a new URL when it changes);
-      // `brand/onboarding.9d556f92.webp` is the same URL forever. `cache: 'reload'` bypasses the HTTP
+      // `brand/onboarding.ca933043.webp` is the same URL forever. `cache: 'reload'` bypasses the HTTP
       // cache on install, so a stamped worker always precaches what the server currently holds.
       .then((c) => Promise.allSettled(
         PRECACHE.map((u) => fetch(new Request(u, { cache: 'reload' })).then((r) => c.put(u, r))),
