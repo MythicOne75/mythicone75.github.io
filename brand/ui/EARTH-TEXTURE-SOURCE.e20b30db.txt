@@ -1,0 +1,8 @@
+earth-night.webp
+  NASA Earth Observatory — "Earth's City Lights"
+  https://eoimages.gsfc.nasa.gov/images/imagerecords/55000/55167/earth_lights_lrg.jpg
+  Data courtesy Marc Imhoff (NASA GSFC) and Christopher Elvidge (NOAA NGDC);
+  image by Craig Mayhew and Robert Simmon (NASA GSFC).
+  NASA imagery is in the public domain; see https://www.nasa.gov/multimedia/guidelines/
+  Retrieved 2026-09-19. Original 2400x1200 equirectangular JPEG, 547,269 bytes.
+  Shipped resized to 2048x1024, brightness +18%, contrast +10%, WebP q82.
