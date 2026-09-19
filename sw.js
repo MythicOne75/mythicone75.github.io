@@ -16,7 +16,7 @@
  * an offline launch shows the last run rather than an error. It is an EXPORT either way, and
  * the interface already labels it as one.
  */
-const VERSION = 'genghis-9415f91b737a';
+const VERSION = 'genghis-f89b9a21ac27';
 const SHELL = `${VERSION}-shell`;
 const DATA = `${VERSION}-data`;
 
@@ -24,13 +24,13 @@ const DATA = `${VERSION}-data`;
 const PRECACHE = [
   '/',
   '/manifest.webmanifest',
-  '/brand/genghis-lockup.webp',
-  '/brand/genghis-emblem.webp',
-  '/brand/genghis-wordmark.webp',
-  '/brand/genghis-intro.mp4',
-  '/brand/genghis-intro-poster.webp',
-  '/brand/icon-192.png',
-  '/brand/apple-touch-icon.png',
+  '/brand/genghis-lockup.80bef01d.webp',
+  '/brand/genghis-emblem.79227f21.webp',
+  '/brand/genghis-wordmark.3bce5a9a.webp',
+  '/brand/genghis-intro.898df283.mp4',
+  '/brand/genghis-intro-poster.2b94e7eb.webp',
+  '/brand/icon-192.1ce8d613.png',
+  '/brand/apple-touch-icon.1e359496.png',
 ];
 
 self.addEventListener('install', (e) => {
@@ -42,7 +42,7 @@ self.addEventListener('install', (e) => {
       // remove the painted Sign In button, the server had the new file, and returning visitors
       // went on being served the old one because brand assets keep a FIXED FILENAME every build.
       // The bundle cannot have this problem (`index-<hash>.js` is a new URL when it changes);
-      // `brand/onboarding.webp` is the same URL forever. `cache: 'reload'` bypasses the HTTP
+      // `brand/onboarding.9d556f92.webp` is the same URL forever. `cache: 'reload'` bypasses the HTTP
       // cache on install, so a stamped worker always precaches what the server currently holds.
       .then((c) => Promise.allSettled(
         PRECACHE.map((u) => fetch(new Request(u, { cache: 'reload' })).then((r) => c.put(u, r))),
